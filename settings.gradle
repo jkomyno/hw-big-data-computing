@@ -8,3 +8,8 @@
  */
 
 rootProject.name = 'hw-big-data-computing'
+
+// include subprojects
+include 'hw1'
+include 'hw2'
+include 'hw3'

@@ -6,29 +6,49 @@
  * User Manual available at https://docs.gradle.org/6.5.1/userguide/tutorial_java_projects.html
  */
 
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
+    }
+}
+
 plugins {
-    // Apply the java plugin to add support for Java
-    id 'java'
-
-    // Apply the application plugin to add support for building a CLI application.
-    id 'application'
+    id "com.github.johnrengelman.shadow" version "5.2.0" apply false
 }
 
-repositories {
-    // Use jcenter for resolving dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    jcenter()
-}
+ext.libraries = [
+    spark_core: "org.apache.spark:spark-core_${SPARK_SUFFIX_VERSION}:${SPARK_CORE_VERSION}",
+    spark_mllib: "org.apache.spark:spark-mllib_${SPARK_SUFFIX_VERSION}:${SPARK_MLLIB_VERSION}",
+    hadoop_client: "org.apache.hadoop:hadoop-client:${HADOOP_CLIENT_VERSION}"
+]
 
-dependencies {
-    // This dependency is used by the application.
-    implementation 'com.google.guava:guava:29.0-jre'
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'application'
+    apply plugin: 'com.github.johnrengelman.shadow'
 
-    // Use JUnit test framework
-    testImplementation 'junit:junit:4.13'
-}
+    version = '1.0'
 
-application {
-    // Define the main class for the application.
-    mainClassName = 'it.unipd.bigdata.jkomyno.App'
+    repositories {
+        jcenter()
+    }
+
+    configurations {
+        // Spark should be included in the local class path both at compilation and at runtime, but it should be
+        // excluded from the jar artifact
+        sparkCompile
+
+        // indicates what should be included in the jar artifact
+        shadowCompile
+    }
+
+    // configuration for the shadow jar plugin
+    shadowJar {
+        zip64 true
+        configurations = [subprojects.configurations.shadowCompile] // Exclude runtime-only path
+    }
 }
