@@ -1,0 +1,14 @@
+INPUT:
+
+** K=4
+
+** DATASET: input_10000.txt
+
+OUTPUT:
+
+VERSION WITH DETERMINISTIC PARTITIONS
+Output pairs = (Action,846) (Animation,845) (Comedy,863) (Crime,818) (Drama,870) (Fantasy,871) (Horror,3055) (Romance,864) (SciFi,877) (Thriller,91)
+
+VERSION WITH SPARK PARTITIONS
+Most frequent class = (Horror,3055)
+Max partition size = 2500
