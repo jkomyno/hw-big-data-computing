@@ -1,0 +1,11 @@
+configurations {
+    compile.extendsFrom sparkCompile
+    compile.extendsFrom shadowCompile
+}
+
+dependencies {
+    sparkCompile libraries.spark_core
+    sparkCompile libraries.spark_mllib
+}
+
+mainClassName = 'hw2.HW2'
