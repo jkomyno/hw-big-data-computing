@@ -1,0 +1,12 @@
+configurations {
+    compile.extendsFrom sparkCompile
+    compile.extendsFrom shadowCompile
+}
+
+dependencies {
+    sparkCompile libraries.spark_core
+    sparkCompile libraries.spark_mllib
+    sparkCompile libraries.hadoop_client
+}
+
+mainClassName = 'hw3.HW3'
