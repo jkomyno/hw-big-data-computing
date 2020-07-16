@@ -1,18 +1,18 @@
 # Homework Big Data Computing
 
-These are my homeworks for the Big Data Computing course at University of Padova (UNIPD).
-These homeworks were evaluated as:
+This repository hosts my homework for the Big Data Computing course at University of Padova (UNIPD).
+These 3 exercises were evaluated as:
 
 - hw1: 2/2 points
 - hw2: 3/3 points
 - hw3: 3/3 points
 
-Moreover, we received an additional point for submitting every homework before the deadline.
+Moreover, we received an additional point for submitting every exercise before the deadline.
 
 ## Technology Stack
 
-The homeworks are implemented in Java 8.
-I've refactored the three homeworks into a single Gradle multi-project.
+The homework is implemented in Java 8.
+I've refactored the three exercises into a single Gradle multi-project.
 
 This project has been tested on:
 
